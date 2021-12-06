@@ -1,5 +1,6 @@
 import React from 'react';
 import data from './data';
+import Job from './components/job';
 function App() {
   return (
     <div className="grid-container">
@@ -18,14 +19,7 @@ function App() {
         <div>
           <div className="row center">
             {data.jobs.map((job) => (
-              <div key={job._id} className="card">
-                <div className="card-body">
-                  <a href={`/job/${job._id}`}>
-                    <h2>{job.name}</h2>
-                  </a>
-                  <div className="price">{job.position}</div>
-                </div>
-              </div>
+               <Job key = {job._id} job = {job}></Job>
             ))}
           </div>
         </div>
