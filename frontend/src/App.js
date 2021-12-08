@@ -1,8 +1,11 @@
 import React from 'react';
-import data from './data';
-import Job from './components/job';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import HomeScreen from './screens/HomeScreen';
+import JobScreen from './screens/JobScreen';
+
 function App() {
   return (
+    <BrowserRouter>
     <div className="grid-container">
       <header className="row">
         <div>
@@ -16,16 +19,15 @@ function App() {
         </div>
       </header>
       <main>
-        <div>
-          <div className="row center">
-            {data.jobs.map((job) => (
-               <Job key = {job._id} job = {job}></Job>
-            ))}
-          </div>
-        </div>
+      <Routes>
+        <Route path = "/jobs/:id" element = {<JobScreen/>} ></Route>
+        <Route path = "/" element = {<HomeScreen/>} ></Route>
+      </Routes>
+       
       </main>
       <footer className="row center">All right reserved</footer>
     </div>
+    </BrowserRouter>
   );
 }
 
