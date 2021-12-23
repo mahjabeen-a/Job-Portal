@@ -14,7 +14,10 @@ function App() {
           </a>
         </div>
         <div>
-          <a href="/cart">Cart</a>
+        <h3><a href="/">Find the perfect job!</a></h3>
+        </div>
+        <div>
+          <a href="/cart">Applications</a>
           <a href="/signin">Sign In</a>
         </div>
       </header>

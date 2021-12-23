@@ -11,7 +11,8 @@ export default function Job(props) {
           <h2>{job.name}</h2>
         </a>
     
-        <div className="price">{job.position}</div>
+        <div className="price">Position: {job.position}</div>
+        <div className="price">Vacancy: {job.vacancy}</div>
       </div>
     </div>
   );
