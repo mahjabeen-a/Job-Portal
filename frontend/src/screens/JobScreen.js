@@ -21,7 +21,7 @@ export default function JobScreen(props) {
             <li>
               <h1>{job.name}</h1>
             </li>
-            <li>salary : ${job.salary}</li>
+            <li>salary : Rs {job.salary}</li>
             <li>
               Description:
               <p>{job.description}</p>
@@ -34,7 +34,7 @@ export default function JobScreen(props) {
               <li>
                 <div className="row">
                   <div>Salary</div>
-                  <div className="price">${job.salary}</div>
+                  <div className="price">Rs {job.salary}</div>
                 </div>
               </li>
               <li>
