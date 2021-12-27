@@ -44,7 +44,7 @@ export default function JobScreen(props) {
                     {job.vacancy > 0 ? (
                       <span className="success">Applications Open</span>
                     ) : (
-                      <span className="error">Application Closed</span>
+                      <span className="danger">Application Closed</span>
                     )}
                   </div>
                 </div>
