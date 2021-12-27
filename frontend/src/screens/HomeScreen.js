@@ -1,29 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
 import Job from '../components/job';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { listjobs } from '../actions/jobActions';
 
 
 export default function HomeScreen() {
-  const [jobs, setjobs] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  
+  const dispatch = useDispatch();
+  const jobList = useSelector((state) => state.jobList);
+  const {loading, error, jobs } = jobList;
+  //useEffect lets us express different kinds of side effects after a component renders.
   useEffect(() => {
-    const fetchData = async () => {
-      try{
-          setLoading(true);
-      const { data } = await axios.get('/api/jobs');
-      setLoading(false);
-      setjobs(data);
-      }catch(err){
-        setError(err.message);
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
+    dispatch(listjobs());
+  }, [dispatch]);
   return (
     <div>
        {loading ? (
@@ -31,10 +22,12 @@ export default function HomeScreen() {
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
+   
       <div className="row center">
-        {jobs.map((job) => (
+        {jobs && jobs.map((job) => (
           <Job key = {job._id} job ={job}></Job>
         ))}
+      
       </div>
       )}
     </div>
