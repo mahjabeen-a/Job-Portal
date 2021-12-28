@@ -1,16 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
-import data from '../data';
-import { useParams } from 'react-router';
+import { detailsjob } from '../actions/jobActions';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
+
 
 export default function JobScreen(props) {
-  const { id } = useParams();
-  const job = data.jobs.find((x) => x._id === id);
-  if (!job) {
-    return <div> job Not Found</div>;
-  }
+ 
+  const dispatch = useDispatch();
+  const jobId = useParams().id;
+  const jobDetails = useSelector((state) => state.jobDetails);
+  const { loading, error, job } = jobDetails;
+
+  useEffect(() => {
+    dispatch(detailsjob(jobId));
+  }, [dispatch, jobId]);
+
   return (
-    <div>
+  <div>
+       {loading ? (
+        <LoadingBox></LoadingBox>
+      ) : error ? (
+        <MessageBox variant="danger">{error}</MessageBox>
+      ) : (
+   <div>
       <Link to="/">Back to result</Link>
       <div className="row top">
         <div className="col-2">
@@ -57,5 +72,8 @@ export default function JobScreen(props) {
         </div>
       </div>
     </div>
+   )}
+  </div>
   );
-}
+    
+} 
