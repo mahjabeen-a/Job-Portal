@@ -33,6 +33,7 @@ function App() {
       <main>
       <Routes>
         <Route path="/cart/:id" element={<CartScreen/>}></Route>
+        <Route path="/cart" element={<CartScreen/>}></Route>
         <Route path = "/jobs/:id" element = {<JobScreen/>} ></Route>
         <Route path = "/" element = {<HomeScreen/>} ></Route>
       </Routes>
