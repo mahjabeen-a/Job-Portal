@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 export default function Job(props) {
@@ -7,9 +8,9 @@ export default function Job(props) {
     <div key={job._id} className="card">
     
       <div className="card-body">
-        <a href={`/jobs/${job._id}`}>
+        <Link to = {`/jobs/${job._id}`}>
           <h2>{job.name}</h2>
-        </a>
+        </Link>
     
         <div className="price">Position: {job.position}</div>
         <div className="price">Vacancy: {job.vacancy}</div>
