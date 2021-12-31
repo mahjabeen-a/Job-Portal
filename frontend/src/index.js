@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import store from './store';
 
 ReactDOM.render(
+  //get access to redux store from react components
   <Provider store={store}>
   <React.StrictMode>
     <App />

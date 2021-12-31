@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { detailsjob } from '../actions/jobActions';
 import LoadingBox from '../components/LoadingBox';
@@ -8,16 +8,21 @@ import MessageBox from '../components/MessageBox';
 
 
 export default function JobScreen(props) {
- 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const jobId = useParams().id;
+  const [qty, setQty] = useState(1);
   const jobDetails = useSelector((state) => state.jobDetails);
   const { loading, error, job } = jobDetails;
 
   useEffect(() => {
     dispatch(detailsjob(jobId));
   }, [dispatch, jobId]);
-
+  
+  const addToCartHandler = () => {
+    //props.history.push(`/cart/${jobId}?qty=${qty}`);
+    navigate(`/cart/${jobId}?qty=${qty}`);
+  };
   return (
   <div>
        {loading ? (
@@ -64,9 +69,37 @@ export default function JobScreen(props) {
                   </div>
                 </div>
               </li>
-              <li>
-                <button className="primary block">Apply</button>
-              </li>
+              {job.vacancy > 0 && (
+                    <>
+                      <li>
+                        <div className="row">
+                          <div>Qty</div>
+                          <div>
+                            <select
+                              value={qty}
+                              onChange={(e) => setQty(e.target.value)}
+                            >
+                              {[...Array(job.vacancy).keys()].map(
+                                (x) => (
+                                  <option key={x + 1} value={x + 1}>
+                                    {x + 1}
+                                  </option>
+                                )
+                              )}
+                            </select>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <button
+                          onClick={addToCartHandler}
+                          className="primary block"
+                        >
+                          Apply
+                        </button>
+                      </li>
+                    </>
+                  )}
             </ul>
           </div>
         </div>
