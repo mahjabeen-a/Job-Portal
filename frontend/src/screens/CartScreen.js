@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-import { addToCart } from '../actions/cartActions';
+import { addToCart, removeFromCart } from '../actions/cartActions';
 import MessageBox from '../components/MessageBox';
 
 export default function CartScreen(props) {
@@ -23,6 +23,7 @@ export default function CartScreen(props) {
     }, [dispatch, jobId, qty]);
     const removeFromCartHandler = (id) => {
       // delete action
+      dispatch(removeFromCart(id));
     };
   
     const checkoutHandler = () => {
@@ -32,10 +33,10 @@ export default function CartScreen(props) {
     return (
       <div className="row top">
       <div className="col-2">
-        <h1>Shopping Cart</h1>
+        <h1>Job Applied</h1>
         {cartItems.length === 0 ? (
           <MessageBox>
-            Cart is empty. <Link to="/">Go Shopping</Link>
+            No Jobs Applied. <Link to="/">Apply for jobs.</Link>
           </MessageBox>
         ) : (
           <ul>
