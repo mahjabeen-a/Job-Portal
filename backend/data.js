@@ -1,7 +1,22 @@
+import bcrypt from 'bcryptjs';
+
 const data = {
-    jobs: [
+  users: [
+    {
+      name: 'Mahz',
+      email: 'admin@example.com',
+      password: bcrypt.hashSync('1234', 8),
+      isAdmin: true,
+    },
+    {
+      name: 'Pooja',
+      email: 'user@example.com',
+      password: bcrypt.hashSync('1234', 8),
+      isAdmin: false,
+    },
+  ],
+  jobs: [
       {
-        _id: '1',
         name: 'ADOBE',
         position: 'Software engineer',
         vacancy : 10,
@@ -10,7 +25,6 @@ const data = {
         description: 'WE ARE IN NEED OF SOFTWARE ENGINEER!!',
       },
       {
-        _id: '2',
         name: 'WALMART',
         position: 'Software engineer',
         vacancy : 10,
@@ -19,7 +33,6 @@ const data = {
         description: 'WE ARE IN NEED OF SOFTWARE ENGINEER!!',
       },
       {
-        _id: '3',
         name: 'VISA',
         position: 'Software engineer',
         vacancy : 5,
@@ -28,7 +41,6 @@ const data = {
         description: 'WE ARE IN NEED OF SOFTWARE ENGINEER!!',
       },
       {
-        _id: '4',
         name: 'DE SHAW',
         position: 'Technical Analyst',
         vacancy : 5,
@@ -37,7 +49,6 @@ const data = {
         description: 'WE ARE IN NEED OF A TECHNICAL ANALYST!!',
       },
       {
-        _id: '5',
         name: 'GOOGLE',
         position: 'Software engineer',
         vacancy : 3,
@@ -46,7 +57,6 @@ const data = {
         description: 'WE ARE IN NEED OF SOFTWARE ENGINEER!!',
       },
       {
-        _id: '6',
         name: 'MICROSOFT',
         position: 'Software engineer',
         vacancy : 7,
@@ -55,7 +65,6 @@ const data = {
         description: 'WE ARE IN NEED OF SOFTWARE ENGINEER!!',
       },
       {
-        _id: '7',
         name: 'GOLDMAN SACHS',
         position: 'Technical Analyst',
         vacancy : 5,

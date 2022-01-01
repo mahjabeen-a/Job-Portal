@@ -1,28 +1,20 @@
 import express from 'express';
-import data from './data.js';
-
+import mongoose from 'mongoose';
+import jobRouter from './routers/jobRouter.js';
+import userRouter from './routers/userRouter.js';
 const app = express();
+mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/jobportal');
 
-app.get('/api/jobs/:id', (req, res) => {
-  
-  const job = data.jobs.find((x) => x._id === req.params.id);
-  if (job)
-  {
-    res.send(job);
-  }
-  else 
-  {
-    res.status(404).send({ message: 'Job Not Found' });
-  }
-});
-
-app.get('/api/jobs', (req, res) => {
-  res.send(data.jobs);
-});
 //The req object represents the HTTP request .
 //The res.send() function basically sends the HTTP response
+app.use('/api/users', userRouter);
+app.use('/api/jobs', jobRouter);
 app.get('/', (req, res) => {
   res.send('Server is ready');
+});
+
+app.use((err, req, res, next) => {
+  res.status(500).send({ message: err.message });
 });
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
