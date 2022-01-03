@@ -1,3 +1,4 @@
+//shippingaddress as applicationdetails
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { jobDetailsReducer, jobListReducer } from './reducers/jobReducers';
@@ -14,6 +15,9 @@ const initialState = {
     cartItems: localStorage.getItem('cartItems')
       ? JSON.parse(localStorage.getItem('cartItems'))
       : [],
+      applicationdetails: localStorage.getItem('applicationdetails')
+      ? JSON.parse(localStorage.getItem('applicationdetails'))
+      : {},
   },
 };
 const reducer = combineReducers({

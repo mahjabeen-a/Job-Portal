@@ -23,6 +23,10 @@ export default function JobScreen(props) {
     //props.history.push(`/cart/${jobId}?qty=${qty}`);
     navigate(`/cart/${jobId}?qty=${qty}`);
   };
+  const applyHandler = () => {
+    //props.history.push('/signin?redirect=shipping');
+    navigate(`/signin?redirect=/applicationform`);
+  };
   return (
   <div>
        {loading ? (
@@ -95,8 +99,17 @@ export default function JobScreen(props) {
                           onClick={addToCartHandler}
                           className="primary block"
                         >
-                          Apply
+                          Add to wishlist
                         </button>
+                        <button
+                          onClick={applyHandler}
+                          className="primary block"
+                        >
+                           Apply
+                        </button>
+                       
+                        
+                        
                       </li>
                     </>
                   )}

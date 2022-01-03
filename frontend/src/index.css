@@ -37,6 +37,18 @@ footer {
   background-color: #203040;
   color: #ffffff;
 }
+/* Checkout Steps */
+.checkout-steps > div {
+  border-top: 0.3rem #c0c0c0 solid;
+  color: #c0c0c0;
+  flex: 1;
+  padding: 1rem;
+  font-weight: bold;
+}
+.checkout-steps > div.active {
+  border-top-color: #f08000;
+  color: #f08000;
+}
 /* Common */
 h1 {
   font-size: 1.8rem;

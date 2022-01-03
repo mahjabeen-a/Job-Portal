@@ -7,6 +7,7 @@ import HomeScreen from './screens/HomeScreen';
 import JobScreen from './screens/JobScreen';
 import SigninScreen from './screens/SigninScreen';
 import RegisterScreen from './screens/RegisterScreen';
+import ApplicationScreen from './screens/ApplicationScreen';
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -61,6 +62,7 @@ function App() {
         <Route path = "/jobs/:id" element = {<JobScreen/>} ></Route>
         <Route path="/signin" element={<SigninScreen/>}></Route>
         <Route path="/register" element={<RegisterScreen/>}></Route>
+        <Route path="/applicationform" element={<ApplicationScreen/>}></Route>
         <Route path = "/" element = {<HomeScreen/>} ></Route>
       </Routes>
        
