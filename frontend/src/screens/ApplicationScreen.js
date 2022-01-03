@@ -29,7 +29,7 @@ export default function ApplicationScreen(props) {
         dispatch(
             saveApplicationDetails({ fullName, address, city, postalCode, country })
           );
-        navigate('/payment');
+        navigate('/apply');
       };
     return (
         <div>
