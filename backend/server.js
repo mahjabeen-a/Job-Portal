@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import jobRouter from './routers/jobRouter.js';
 import userRouter from './routers/userRouter.js';
+import orderRouter from './routers/orderRouter.js';
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/jobportal');
 //The res.send() function basically sends the HTTP response
 app.use('/api/users', userRouter);
 app.use('/api/jobs', jobRouter);
+app.use('/api/orders', orderRouter);
 app.get('/', (req, res) => {
   res.send('Server is ready');
 });
