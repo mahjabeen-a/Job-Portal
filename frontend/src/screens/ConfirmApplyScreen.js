@@ -1,14 +1,29 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import CheckoutSteps from '../components/CheckoutSteps';
+import { createOrder } from '../actions/orderActions';
+import { ORDER_CREATE_RESET } from '../constants/orderConstants';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
 
 export default function ConfirmApplyScreen(props) {
+  const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);
- 
+  const orderCreate = useSelector((state) => state.orderCreate);
+  console.log(orderCreate);
+  const { loading, success, error, order } = orderCreate;
+  const dispatch = useDispatch();
   const placeOrderHandler = () => {
-    // TODO: dispatch place order action
+    dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
+
   };
+  useEffect(() => {
+    if (success) {
+      navigate(`/order/${order._id}`);
+      dispatch({ type: ORDER_CREATE_RESET });
+    }
+  }, [dispatch, order,navigate, success]);
   return (
     <div>
       <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
@@ -61,6 +76,8 @@ export default function ConfirmApplyScreen(props) {
                   Apply Job
                 </button>
             </li>
+            {loading && <LoadingBox></LoadingBox>}
+            {error && <MessageBox variant="danger">{error}</MessageBox>}
             </div>
            
         </ul>

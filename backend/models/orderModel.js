@@ -9,7 +9,7 @@ const orderSchema = new mongoose.Schema(
         vacancy: { type: Number, required: true },
         salary: { type: Number, required: true },
         count_applicants: { type: Number, required: true},
-        description: { type: String, required: true },
+        description: { type: String },
         job: {
           type: mongoose.Schema.Types.ObjectId,
           ref: 'Job',
@@ -17,12 +17,12 @@ const orderSchema = new mongoose.Schema(
         },
       },
     ],
-    applicationDetails: {
-      fullName: { type: String, required: true },
-      address: { type: String, required: true },
-      city: { type: String, required: true },
-      postalCode: { type: String, required: true },
-      country: { type: String, required: true },
+    applicationdetails: {
+      fullName: { type: String /*required: true*/ },
+      address: { type: String },
+      city: { type: String },
+      postalCode: { type: String },
+      country: { type: String },
     },
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   },
