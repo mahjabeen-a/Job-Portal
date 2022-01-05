@@ -2,6 +2,7 @@ import express from 'express';
 import expressAsyncHandler from 'express-async-handler';
 import data from '../data.js';
 import Job from '../models/jobModel.js';
+import { isAdmin, isAuth } from '../utils.js';
 
 const jobRouter = express.Router();
 
@@ -32,6 +33,24 @@ jobRouter.get(
     } else {
       res.status(404).send({ message: 'Job Not Found' });
     }
+  })
+);
+
+jobRouter.post(
+  '/',
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const job = new Job({
+      name: 'SAMPLE' + Date.now(),
+      position: 'Software engineer',
+      vacancy : 0,
+      salary: 0,
+      count_applicants: 0,
+      description: 'Work for us',
+    });
+    const createdJob = await job.save();
+    res.send({ message: 'Job Created', job: createdJob });
   })
 );
 

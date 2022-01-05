@@ -1,24 +1,46 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { listjobs } from '../actions/jobActions';
+import { createJob, listjobs } from '../actions/jobActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import {useNavigate} from 'react-router-dom';
+import { JOB_CREATE_RESET } from '../constants/jobConstants';
 
 export default function JobListScreen(props) {
   const navigate = useNavigate();
   const jobList = useSelector((state) => state.jobList);
   const { loading, error, jobs } = jobList;
+  const jobCreate = useSelector((state) => state.jobCreate);
+  const {
+    loading: loadingCreate,
+    error: errorCreate,
+    success: successCreate,
+    job: createdJob,
+  } = jobCreate;
   const dispatch = useDispatch();
   useEffect(() => {
+    if (successCreate) {
+      dispatch({ type: JOB_CREATE_RESET });
+      navigate(`/job/${createdJob._id}/edit`);
+    }
     dispatch(listjobs());
-  }, [dispatch]);
+  }, [createdJob, dispatch, navigate, successCreate]);
   const deleteHandler = () => {
     /// TODO: dispatch delete action
   };
+  const createHandler = () => {
+    dispatch(createJob());
+  };
   return (
     <div>
-      <h1>Jobs</h1>
+      <div className="row">
+        <h1>Jobs</h1>
+        <button type="button" className="primary" onClick={createHandler}>
+          Create Job
+        </button>
+      </div>
+      {loadingCreate && <LoadingBox></LoadingBox>}
+      {errorCreate && <MessageBox variant="danger">{errorCreate}</MessageBox>}
       {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (

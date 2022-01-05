@@ -92,7 +92,7 @@ function App() {
       <Routes>
         <Route path="/cart/:id" element = {<CartScreen/>}></Route>
         <Route path="/cart" element = {<CartScreen/>}></Route>
-        <Route path = "/jobs/:id" element = {<JobScreen/>} ></Route>
+        <Route path = "/jobs/:id" element = {<JobScreen/>} exact ></Route>
         <Route path="/signin" element = {<SigninScreen/>}></Route>
         <Route path="/register" element = {<RegisterScreen/>}></Route>
         <Route path="/applicationform" element = {<ApplicationScreen/>}></Route>
