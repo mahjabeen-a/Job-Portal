@@ -21,15 +21,21 @@ export default function CartScreen(props) {
         dispatch(addToCart(jobId, qty));
         }
     }, [dispatch, jobId, qty]);
+
     const removeFromCartHandler = (id) => {
       // delete action
       dispatch(removeFromCart(id));
     };
+
+    const applyHandler = () => {
+      //props.history.push('/signin?redirect=shipping');
+      navigate(`/signin?redirect=/applicationform`);
+    };
   
-    const checkoutHandler = () => {
+    /*const checkoutHandler = () => {
       //props.history.push('/signin?redirect=shipping');
       navigate(`/signin?redirect=shipping`);
-    };
+    };*/
     return (
       <div className="row top">
       <div className="col-2">
@@ -74,6 +80,14 @@ export default function CartScreen(props) {
                     >
                       Delete
                     </button>
+                    </div>
+                    <div>
+                    <button
+                        onClick={applyHandler}
+                        className="primary block"
+                    >
+                      Apply
+                    </button>
                   </div>
                 </div>
               </li>
@@ -81,16 +95,19 @@ export default function CartScreen(props) {
           </ul>
         )}
       </div>
+    {/*
       <div className="col-1">
         <div className="card card-body">
+          
           <ul>
             <li>
-           {/*   <h2>
+              <h2>
                 Subtotal ({cartItems.reduce((a, c) => a + c.qty, 0)} items) : $
                 {cartItems.reduce((a, c) => a + c.salary * c.qty, 0)}
-              </h2>*/}
+              </h2>
             </li>
             <li>
+              
               <button
                 type="button"
                 onClick={checkoutHandler}
@@ -103,6 +120,7 @@ export default function CartScreen(props) {
           </ul>
         </div>
       </div>
+         */}   
     </div>
   );
 }

@@ -9,6 +9,7 @@ import SigninScreen from './screens/SigninScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import ApplicationScreen from './screens/ApplicationScreen';
 import ConfirmApplyScreen from './screens/ConfirmApplyScreen';
+import HistoryScreen from './screens/HistoryScreen';
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -44,6 +45,9 @@ function App() {
                   {userInfo.name} <i className="fa fa-caret-down"></i>{' '}
                 </Link>
                 <ul className="dropdown-content">
+                <li>
+                    <Link to="/orderhistory">History</Link>
+                  </li>
                   <li>
                     <Link to="#signout" onClick={signoutHandler}>
                       Sign Out
@@ -66,6 +70,7 @@ function App() {
         <Route path="/applicationform" element = {<ApplicationScreen/>}></Route>
         <Route path="/apply" element = {<ConfirmApplyScreen/>}></Route>
         <Route path = "/" element = {<HomeScreen/>} ></Route>
+        <Route path="/orderhistory" element={<HistoryScreen/>}></Route>
       </Routes>
        
       </main>
