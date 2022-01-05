@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import { jobDetailsReducer, jobListReducer } from './reducers/jobReducers';
 import { cartReducer } from './reducers/cartReducers';
 import { orderCreateReducer, orderMineListReducer,} from './reducers/orderReducers';
-import { userSigninReducer, userRegisterReducer } from './reducers/userReducers';
+import { userSigninReducer, userRegisterReducer, userDetailsReducer, userUpdateProfileReducer } from './reducers/userReducers';
 
 const initialState = {
   userSignin: {
@@ -29,6 +29,8 @@ const reducer = combineReducers({
     userRegister: userRegisterReducer,
     orderCreate: orderCreateReducer,
     orderMineList: orderMineListReducer,
+    userDetails: userDetailsReducer,
+    userUpdateProfile: userUpdateProfileReducer
   });
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(

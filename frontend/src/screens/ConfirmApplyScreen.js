@@ -20,7 +20,7 @@ export default function ConfirmApplyScreen(props) {
   };
   useEffect(() => {
     if (success) {
-      navigate(`/order/${order._id}`);
+      navigate(`/`);
       dispatch({ type: ORDER_CREATE_RESET });
     }
   }, [dispatch, order,navigate, success]);

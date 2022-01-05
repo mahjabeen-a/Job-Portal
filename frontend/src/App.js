@@ -10,6 +10,8 @@ import RegisterScreen from './screens/RegisterScreen';
 import ApplicationScreen from './screens/ApplicationScreen';
 import ConfirmApplyScreen from './screens/ConfirmApplyScreen';
 import HistoryScreen from './screens/HistoryScreen';
+import ProfileScreen from './screens/ProfileScreen';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -46,6 +48,9 @@ function App() {
                 </Link>
                 <ul className="dropdown-content">
                 <li>
+                    <Link to="/profile">User Profile</Link>
+                  </li>
+                <li>
                     <Link to="/orderhistory">History</Link>
                   </li>
                   <li>
@@ -71,6 +76,14 @@ function App() {
         <Route path="/apply" element = {<ConfirmApplyScreen/>}></Route>
         <Route path = "/" element = {<HomeScreen/>} ></Route>
         <Route path="/orderhistory" element={<HistoryScreen/>}></Route>
+        <Route
+              path="/profile"
+              element={
+                <PrivateRoute>
+                  <ProfileScreen />
+                </PrivateRoute>
+              }
+            />
       </Routes>
        
       </main>
