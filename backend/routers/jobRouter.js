@@ -74,4 +74,19 @@ jobRouter.put(
   })
 );
 
+jobRouter.delete(
+  '/:id',
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const job = await Job.findById(req.params.id);
+    if (job) {
+      const deleteJob = await job.remove();
+      res.send({ message: 'job Deleted', job: deleteJob });
+    } else {
+      res.status(404).send({ message: 'job Not Found' });
+    }
+  })
+);
+
 export default jobRouter;

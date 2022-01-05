@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createJob, listjobs } from '../actions/jobActions';
+import { createJob, deleteJob, listjobs } from '../actions/jobActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import {useNavigate} from 'react-router-dom';
-import { JOB_CREATE_RESET } from '../constants/jobConstants';
+import { JOB_CREATE_RESET, JOB_DELETE_RESET } from '../constants/jobConstants';
 
 export default function JobListScreen(props) {
   const navigate = useNavigate();
@@ -17,15 +17,31 @@ export default function JobListScreen(props) {
     success: successCreate,
     job: createdJob,
   } = jobCreate;
+
+  const jobDelete = useSelector((state) => state.jobDelete);
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = jobDelete;
   const dispatch = useDispatch();
   useEffect(() => {
+    
     if (successCreate) {
       dispatch({ type: JOB_CREATE_RESET });
       navigate(`/jobs/${createdJob._id}/edit`);
     }
+
+    if (successDelete) {
+      dispatch({ type: JOB_DELETE_RESET });
+    }
+
     dispatch(listjobs());
-  }, [createdJob, dispatch, navigate, successCreate]);
-  const deleteHandler = () => {
+  }, [createdJob, dispatch, navigate, successCreate, successDelete]);
+  const deleteHandler = (job) => {
+    if (window.confirm('Are you sure to delete?')) {
+      dispatch(deleteJob(job._id));
+    }
     /// TODO: dispatch delete action
   };
   const createHandler = () => {
@@ -39,6 +55,9 @@ export default function JobListScreen(props) {
           Create Job
         </button>
       </div>
+      {loadingDelete && <LoadingBox></LoadingBox>}
+      {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
+      
       {loadingCreate && <LoadingBox></LoadingBox>}
       {errorCreate && <MessageBox variant="danger">{errorCreate}</MessageBox>}
       {loading ? (

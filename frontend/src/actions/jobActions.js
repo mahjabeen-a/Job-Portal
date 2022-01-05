@@ -12,6 +12,9 @@ import {
   JOB_UPDATE_REQUEST,
   JOB_UPDATE_SUCCESS,
   JOB_UPDATE_FAIL,
+  JOB_DELETE_REQUEST,
+  JOB_DELETE_FAIL,
+  JOB_DELETE_SUCCESS,
 } from '../constants/jobConstants';
 
 export const createJob = () => async (dispatch, getState) => {
@@ -84,5 +87,24 @@ export const updateJob = (job) => async (dispatch, getState) => {
         ? error.response.data.message
         : error.message;
     dispatch({ type: JOB_UPDATE_FAIL, error: message });
+  }
+};
+
+export const deleteJob = (jobId) => async (dispatch, getState) => {
+  dispatch({ type: JOB_DELETE_REQUEST, payload: jobId });
+  const {
+    userSignin: { userInfo },
+  } = getState();
+  try {
+    await Axios.delete(`/api/jobs/${jobId}`, {
+      headers: { Authorization: `Bearer ${userInfo.token}` },
+    });
+    dispatch({ type: JOB_DELETE_SUCCESS });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: JOB_DELETE_FAIL, payload: message });
   }
 };

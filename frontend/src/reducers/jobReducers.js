@@ -13,6 +13,10 @@ const {
     JOB_UPDATE_SUCCESS,
     JOB_UPDATE_FAIL,
     JOB_UPDATE_RESET,
+    JOB_DELETE_REQUEST,
+    JOB_DELETE_SUCCESS,
+    JOB_DELETE_FAIL,
+    JOB_DELETE_RESET,
    } = require ('../constants/jobConstants');
 
   export const jobCreateReducer = (state = {}, action) => {
@@ -68,6 +72,21 @@ export const jobDetailsReducer = (state = { loading: true }, action) => {
       case JOB_UPDATE_FAIL:
         return { loading: false, error: action.payload };
       case JOB_UPDATE_RESET:
+        return {};
+      default:
+        return state;
+    }
+  };
+
+  export const jobDeleteReducer = (state = {}, action) => {
+    switch (action.type) {
+      case JOB_DELETE_REQUEST:
+        return { loading: true };
+      case JOB_DELETE_SUCCESS:
+        return { loading: false, success: true };
+      case JOB_DELETE_FAIL:
+        return { loading: false, error: action.payload };
+      case JOB_DELETE_RESET:
         return {};
       default:
         return state;
