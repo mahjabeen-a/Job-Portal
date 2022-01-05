@@ -42,10 +42,7 @@ const {
     }
   };
 
-  export const jobDetailsReducer = (
-    state = { job : {}, loading: true },
-    action
-  ) => {
+export const jobDetailsReducer = (state = { loading: true }, action) => {
     switch (action.type) {
       case JOB_DETAILS_REQUEST:
         return { loading: true };

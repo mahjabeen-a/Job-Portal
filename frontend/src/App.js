@@ -8,6 +8,7 @@ import CartScreen from './screens/CartScreen';
 import ConfirmApplyScreen from './screens/ConfirmApplyScreen';
 import HistoryScreen from './screens/HistoryScreen';
 import HomeScreen from './screens/HomeScreen';
+import JobEditScreen from './screens/JobEditScreen';
 import JobListScreen from './screens/JobListScreen.js';
 import JobScreen from './screens/JobScreen';
 import PrivateRoute from './components/PrivateRoute';
@@ -93,6 +94,7 @@ function App() {
         <Route path="/cart/:id" element = {<CartScreen/>}></Route>
         <Route path="/cart" element = {<CartScreen/>}></Route>
         <Route path = "/jobs/:id" element = {<JobScreen/>} exact ></Route>
+        <Route path = "/jobs/:id/edit" element = {<JobEditScreen/>} exact ></Route>
         <Route path="/signin" element = {<SigninScreen/>}></Route>
         <Route path="/register" element = {<RegisterScreen/>}></Route>
         <Route path="/applicationform" element = {<ApplicationScreen/>}></Route>

@@ -21,7 +21,7 @@ export default function JobListScreen(props) {
   useEffect(() => {
     if (successCreate) {
       dispatch({ type: JOB_CREATE_RESET });
-      navigate(`/job/${createdJob._id}/edit`);
+      navigate(`/jobs/${createdJob._id}/edit`);
     }
     dispatch(listjobs());
   }, [createdJob, dispatch, navigate, successCreate]);
@@ -71,7 +71,7 @@ export default function JobListScreen(props) {
                   <button
                     type="button"
                     className="small"
-                    onClick={() => navigate(`/job/${job._id}/edit`)}
+                    onClick={() => navigate(`/jobs/${job._id}/edit`)}
                   >
                     Edit
                   </button>
