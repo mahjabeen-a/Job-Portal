@@ -2,16 +2,18 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import { signout } from './actions/userActions';
-import CartScreen from './screens/CartScreen';
-import HomeScreen from './screens/HomeScreen';
-import JobScreen from './screens/JobScreen';
-import SigninScreen from './screens/SigninScreen';
-import RegisterScreen from './screens/RegisterScreen';
+import AdminRoute from './components/AdminRoute';
 import ApplicationScreen from './screens/ApplicationScreen';
+import CartScreen from './screens/CartScreen';
 import ConfirmApplyScreen from './screens/ConfirmApplyScreen';
 import HistoryScreen from './screens/HistoryScreen';
-import ProfileScreen from './screens/ProfileScreen';
+import HomeScreen from './screens/HomeScreen';
+import JobListScreen from './screens/JobListScreen.js';
+import JobScreen from './screens/JobScreen';
 import PrivateRoute from './components/PrivateRoute';
+import ProfileScreen from './screens/ProfileScreen';
+import RegisterScreen from './screens/RegisterScreen';
+import SigninScreen from './screens/SigninScreen';
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -73,10 +75,10 @@ function App() {
                     <Link to="/dashboard">Dashboard</Link>
                   </li>
                   <li>
-                    <Link to="/productlist">Products</Link>
+                    <Link to="/joblist">Jobs</Link>
                   </li>
                   <li>
-                    <Link to="/orderlist">Orders</Link>
+                    <Link to="/applist">Applications</Link>
                   </li>
                   <li>
                     <Link to="/userlist">Users</Link>
@@ -97,14 +99,8 @@ function App() {
         <Route path="/apply" element = {<ConfirmApplyScreen/>}></Route>
         <Route path = "/" element = {<HomeScreen/>} ></Route>
         <Route path="/orderhistory" element={<HistoryScreen/>}></Route>
-        <Route
-              path="/profile"
-              element={
-                <PrivateRoute>
-                  <ProfileScreen />
-                </PrivateRoute>
-              }
-            />
+        <Route path="/profile" element={<PrivateRoute><ProfileScreen /></PrivateRoute>}/>
+        <Route path="/joblist" element={<AdminRoute><JobListScreen /></AdminRoute>}/>
       </Routes>
        
       </main>
