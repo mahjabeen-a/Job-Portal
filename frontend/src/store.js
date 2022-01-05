@@ -10,7 +10,7 @@ import
   jobDeleteReducer 
 } from './reducers/jobReducers';
 import { cartReducer } from './reducers/cartReducers';
-import { orderCreateReducer, orderMineListReducer,} from './reducers/orderReducers';
+import { orderCreateReducer, orderListReducer, orderMineListReducer,} from './reducers/orderReducers';
 import { userSigninReducer, userRegisterReducer, userDetailsReducer, userUpdateProfileReducer } from './reducers/userReducers';
 
 const initialState = {
@@ -41,6 +41,7 @@ const reducer = combineReducers({
     jobCreate: jobCreateReducer,
     jobUpdate: jobUpdateReducer,
     jobDelete: jobDeleteReducer,
+    orderList: orderListReducer,
   });
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
