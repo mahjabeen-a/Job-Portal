@@ -53,5 +53,25 @@ jobRouter.post(
     res.send({ message: 'Job Created', job: createdJob });
   })
 );
+jobRouter.put(
+  '/:id',
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const jobId = req.params.id;
+    const job = await Job.findById(jobId);
+    if (job) {
+      job.name = req.body.name;
+      job.position = req.body.position;
+      job.vacancy = req.body.vacancy;
+      job.salary = req.body.salary;
+      job.description = req.body.description;
+      const updatedJob = await job.save();
+      res.send({ message: 'Job Updated', job: updatedJob });
+    } else {
+      res.status(404).send({ message: 'Job Not Found' });
+    }
+  })
+);
 
 export default jobRouter;

@@ -9,6 +9,9 @@ import {
   JOB_LIST_FAIL,
   JOB_LIST_REQUEST,
   JOB_LIST_SUCCESS,
+  JOB_UPDATE_REQUEST,
+  JOB_UPDATE_SUCCESS,
+  JOB_UPDATE_FAIL,
 } from '../constants/jobConstants';
 
 export const createJob = () => async (dispatch, getState) => {
@@ -62,5 +65,24 @@ export const detailsjob = (jobId) => async (dispatch) => {
           ? error.response.data.message
           : error.message,
     });
+  }
+};
+
+export const updateJob = (job) => async (dispatch, getState) => {
+  dispatch({ type: JOB_UPDATE_REQUEST, payload: job });
+  const {
+    userSignin: { userInfo },
+  } = getState();
+  try {
+    const { data } = await Axios.put(`/api/jobs/${job._id}`, job, {
+      headers: { Authorization: `Bearer ${userInfo.token}` },
+    });
+    dispatch({ type: JOB_UPDATE_SUCCESS, payload: data });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: JOB_UPDATE_FAIL, error: message });
   }
 };

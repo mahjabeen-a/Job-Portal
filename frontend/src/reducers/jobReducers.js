@@ -1,14 +1,18 @@
 const {
-    JOB_LIST_FAIL,
     JOB_DETAILS_REQUEST,
     JOB_DETAILS_SUCCESS,
     JOB_DETAILS_FAIL,
+    JOB_LIST_FAIL,
     JOB_LIST_REQUEST,
     JOB_LIST_SUCCESS,
     JOB_CREATE_REQUEST,
     JOB_CREATE_SUCCESS,
     JOB_CREATE_FAIL,
     JOB_CREATE_RESET,
+    JOB_UPDATE_REQUEST,
+    JOB_UPDATE_SUCCESS,
+    JOB_UPDATE_FAIL,
+    JOB_UPDATE_RESET,
    } = require ('../constants/jobConstants');
 
   export const jobCreateReducer = (state = {}, action) => {
@@ -55,3 +59,17 @@ export const jobDetailsReducer = (state = { loading: true }, action) => {
     }
   };
   
+  export const jobUpdateReducer = (state = {}, action) => {
+    switch (action.type) {
+      case JOB_UPDATE_REQUEST:
+        return { loading: true };
+      case JOB_UPDATE_SUCCESS:
+        return { loading: false, success: true };
+      case JOB_UPDATE_FAIL:
+        return { loading: false, error: action.payload };
+      case JOB_UPDATE_RESET:
+        return {};
+      default:
+        return state;
+    }
+  };

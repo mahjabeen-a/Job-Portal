@@ -1,7 +1,7 @@
 //shippingaddress as applicationdetails
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import { jobCreateReducer, jobDetailsReducer, jobListReducer } from './reducers/jobReducers';
+import { jobCreateReducer, jobDetailsReducer, jobListReducer, jobUpdateReducer } from './reducers/jobReducers';
 import { cartReducer } from './reducers/cartReducers';
 import { orderCreateReducer, orderMineListReducer,} from './reducers/orderReducers';
 import { userSigninReducer, userRegisterReducer, userDetailsReducer, userUpdateProfileReducer } from './reducers/userReducers';
@@ -32,6 +32,7 @@ const reducer = combineReducers({
     userDetails: userDetailsReducer,
     userUpdateProfile: userUpdateProfileReducer,
     jobCreate: jobCreateReducer,
+    jobUpdate: jobUpdateReducer,
   });
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(

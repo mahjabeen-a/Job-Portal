@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { detailsjob } from '../actions/jobActions';
+import { detailsjob, updateJob } from '../actions/jobActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import { JOB_UPDATE_RESET } from '../constants/jobConstants';
 
 export default function JobEditScreen(props) {
   const navigate = useNavigate();
@@ -17,21 +18,42 @@ export default function JobEditScreen(props) {
 
   const jobDetails = useSelector((state) => state.jobDetails);
   const { loading, error, job } = jobDetails;
+  const jobUpdate = useSelector((state) => state.jobUpdate);
+  const {
+    loading: loadingUpdate,
+    error: errorUpdate,
+    success: successUpdate,
+  } = jobUpdate;
+
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!job || job._id !== jobId) {
+    if (successUpdate) {
+      navigate('/joblist');
+    }
+    if (!job || job._id !== jobId || successUpdate) {
+      dispatch({ type: JOB_UPDATE_RESET });
       dispatch(detailsjob(jobId));
     } else {
       setName(job.name);
       setPosition(job.position);
-      setVacancy(job.Vacancy);
+      setVacancy(job.vacancy);
       setSalary(job.salary);
       setDescription(job.description);
     }
-  }, [job, dispatch, jobId]);
+  }, [job, dispatch, jobId, successUpdate, navigate]);
   const submitHandler = (e) => {
     e.preventDefault();
     // TODO: dispatch update job
+    dispatch(
+      updateJob({
+        _id: jobId,
+        name,
+        position,
+        vacancy,
+        salary,
+        description,
+      })
+    );
   };
   return (
     <div>
@@ -39,6 +61,8 @@ export default function JobEditScreen(props) {
         <div>
           <h1>Edit Job {jobId}</h1>
         </div>
+        {loadingUpdate && <LoadingBox></LoadingBox>}
+        {errorUpdate && <MessageBox variant="danger">{errorUpdate}</MessageBox>}
         {loading ? (
           <LoadingBox></LoadingBox>
         ) : error ? (
