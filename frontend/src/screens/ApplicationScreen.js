@@ -4,12 +4,13 @@ shippingemail as applicationdetails.
 */
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { saveApplicationDetails } from '../actions/cartActions';
 import CheckoutSteps from "../components/CheckoutSteps";
 
 export default function ApplicationScreen(props) {
-    
+    const params = useParams();
+    const jobId = params.id;
     const userSignin = useSelector((state) => state.userSignin);
     const { userInfo } = userSignin;
     const cart = useSelector((state) => state.cart);
@@ -30,7 +31,7 @@ export default function ApplicationScreen(props) {
         dispatch(
             saveApplicationDetails({ id, email, name, phone, college, degree })
           );
-        navigate('/apply');
+        navigate(`/apply/${jobId}`);
       };
     return (
         <div>
@@ -77,7 +78,7 @@ export default function ApplicationScreen(props) {
           <input
             type="text"
             id="phone"
-            placeholder="Enter postal code"
+            placeholder="Enter phone Number"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             required

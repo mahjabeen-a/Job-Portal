@@ -25,6 +25,7 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
         ...state, 
         applicationdetails: action.payload 
       };
+     
       case CART_EMPTY:
       return {
          ...state,

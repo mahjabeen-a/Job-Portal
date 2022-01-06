@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { createOrder } from '../actions/orderActions';
 import { ORDER_CREATE_RESET } from '../constants/orderConstants';
@@ -9,13 +10,19 @@ import MessageBox from '../components/MessageBox';
 
 export default function ConfirmApplyScreen(props) {
   const navigate = useNavigate();
+  const params = useParams();
+  const jobId = params.id;
   const cart = useSelector((state) => state.cart);
   const orderCreate = useSelector((state) => state.orderCreate);
   console.log(orderCreate);
+  const job_apply = cart.cartItems.find((x) => x.job === jobId);
   const { loading, success, error, order } = orderCreate;
   const dispatch = useDispatch();
   const placeOrderHandler = () => {
-    dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
+
+    dispatch(createOrder({ ...cart, orderItems: cart.cartItems.find((x) => x.job === jobId) }));
+    console.log('helo');
+    console.log(cart.cartItems.find((x) => x.job === jobId));
 
   };
   useEffect(() => {
@@ -47,13 +54,14 @@ export default function ConfirmApplyScreen(props) {
             
                 <div className="card card-body">
                     <h2>Job Details</h2>
-                        <ul>
+                       {/* <ul>
+                           
                             {cart.cartItems.map((item) => (
                             <li key={item.job}>
                                 <div className="row">
                   
                                     <div className="min-30">
-                                         <Link to={`/job/${item.job}`}>{item.name}</Link>
+                                         <Link to={`/jobs/${item.job}`}>{item.name}</Link>
                                     </div>
                                     <div>
                                         {item.position}
@@ -63,6 +71,19 @@ export default function ConfirmApplyScreen(props) {
                             </li>
            
             ))}
+                            </ul>*/}
+                        <ul>
+                        <div className="row">
+                  
+                          <div className="min-30">
+                              <Link to={`/jobs/${job_apply.job}`}>{job_apply.name}</Link>
+                          </div>
+                        <div>
+                            {job_apply.position}
+                        </div>
+                        <div>Rs {job_apply.salary}</div>
+                        </div>
+                          
                         </ul>
                 </div>
             </li>

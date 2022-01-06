@@ -6,7 +6,7 @@ import { addToCart, removeFromCart } from '../actions/cartActions';
 import MessageBox from '../components/MessageBox';
 
 export default function CartScreen(props) {
-  
+    //useParams() is use to get the parameter from url in <Route path
     const params = useParams();
     const jobId = params.id;
     const {search} =useLocation();
@@ -28,7 +28,8 @@ export default function CartScreen(props) {
     };
 
     const applyHandler = () => {
-      navigate(`/signin?redirect=/applicationform`);
+      navigate(`/signin?redirect=/applicationform/${jobId}`);
+     // navigate(`/signin?redirect=/applicationform`);
     };
   
     /*const checkoutHandler = () => {
@@ -113,3 +114,4 @@ export default function CartScreen(props) {
     </div>
   );
 }
+

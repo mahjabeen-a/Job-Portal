@@ -102,8 +102,8 @@ function App() {
         <Route path = "/jobs/:id/edit" element = {<JobEditScreen/>} exact ></Route>
         <Route path="/signin" element = {<SigninScreen/>}></Route>
         <Route path="/register" element = {<RegisterScreen/>}></Route>
-        <Route path="/applicationform" element = {<ApplicationScreen/>}></Route>
-        <Route path="/apply" element = {<ConfirmApplyScreen/>}></Route>
+        <Route path="/applicationform/:id" element = {<ApplicationScreen/>}></Route>
+        <Route path="/apply/:id" element = {<ConfirmApplyScreen/>}></Route>
         <Route path = "/" element = {<HomeScreen/>} ></Route>
         <Route path="/orderhistory" element={<HistoryScreen/>}></Route>
         <Route path="/profile" element={<PrivateRoute><ProfileScreen /></PrivateRoute>}/>
