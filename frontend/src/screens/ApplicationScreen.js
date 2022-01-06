@@ -1,6 +1,6 @@
 /*shippingAddressScreen as ApplicationScreeen.
 saveShippingAddress as saveApplicationDetails.
-shippingaddress as applicationdetails.
+shippingemail as applicationdetails.
 */
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,16 +18,17 @@ export default function ApplicationScreen(props) {
     if (!userInfo) {
         navigate('/signin');
     }
-    const [fullName, setFullName] = useState(applicationdetails.fullName);
-    const [address, setAddress] = useState(applicationdetails.address);
-    const [city, setCity] = useState(applicationdetails.city);
-    const [postalCode, setPostalCode] = useState(applicationdetails.postalCode);
-    const [country, setCountry] = useState(applicationdetails.country);
+    const [id, setId] = useState(applicationdetails.id);
+    const [email, setEmail] = useState(applicationdetails.email);
+    const [name, setName] = useState(applicationdetails.name);
+    const [phone, setPhone] = useState(applicationdetails.phone);
+    const [college, setCollege] = useState(applicationdetails.college);
+    const [degree, setDegree] = useState(applicationdetails.degree);
     const dispatch = useDispatch();
     const submitHandler = (e) => {
         e.preventDefault();
         dispatch(
-            saveApplicationDetails({ fullName, address, city, postalCode, country })
+            saveApplicationDetails({ id, email, name, phone, college, degree })
           );
         navigate('/apply');
       };
@@ -39,57 +40,68 @@ export default function ApplicationScreen(props) {
           <h1>Application Form</h1>
         </div>
         <div>
-          <label htmlFor="fullName">Full Name</label>
+          <label htmlFor="fullName">Id</label>
           <input
             type="text"
-            id="fullName"
-            placeholder="Enter full name"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
+            id="id"
+            placeholder="Enter Id"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
             required
           ></input>
         </div>
         <div>
-          <label htmlFor="address">Address</label>
+          <label htmlFor="email">Email</label>
           <input
             type="text"
-            id="address"
-            placeholder="Enter address"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
+            id="email"
+            placeholder="Enter email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           ></input>
         </div>
         <div>
-          <label htmlFor="city">City</label>
+          <label htmlFor="name">Name</label>
           <input
             type="text"
-            id="city"
-            placeholder="Enter city"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
+            id="name"
+            placeholder="Enter name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             required
           ></input>
         </div>
         <div>
-          <label htmlFor="postalCode">Postal Code</label>
+          <label htmlFor="phone">Phone</label>
           <input
             type="text"
-            id="postalCode"
+            id="phone"
             placeholder="Enter postal code"
-            value={postalCode}
-            onChange={(e) => setPostalCode(e.target.value)}
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
             required
           ></input>
         </div>
         <div>
-          <label htmlFor="country">Country</label>
+          <label htmlFor="college">College</label>
           <input
             type="text"
-            id="country"
-            placeholder="Enter country"
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
+            id="college"
+            placeholder="Enter college"
+            value={college}
+            onChange={(e) => setCollege(e.target.value)}
+            required
+          ></input>
+        </div>
+        <div>
+          <label htmlFor="degree">Degree</label>
+          <input
+            type="text"
+            id="degree"
+            placeholder="Enter degree"
+            value={degree}
+            onChange={(e) => setDegree(e.target.value)}
             required
           ></input>
         </div>

@@ -34,10 +34,12 @@ export default function ConfirmApplyScreen(props) {
               <div className="card card-body">
                 <h2>Application Details</h2>
                 <p>
-                  <strong>Name:</strong> {cart.applicationdetails.fullName} <br />
-                  <strong>Address: </strong> {cart.applicationdetails.address},
-                  {cart.applicationdetails.city}, {cart.applicationdetails.postalCode}
-                  ,{cart.applicationdetails.country}
+                  <strong>Id: </strong> {cart.applicationdetails.id} <br />
+                  <strong>Email: </strong> {cart.applicationdetails.email}<br />
+                  <strong>Name: </strong> {cart.applicationdetails.name}<br />
+                  <strong>Phone: </strong> {cart.applicationdetails.phone}<br />
+                  <strong>College: </strong> {cart.applicationdetails.college}<br />
+                  <strong>Degree: </strong> {cart.applicationdetails.degree}<br />
                 </p>
               </div>
             </li>
