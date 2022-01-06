@@ -16,6 +16,7 @@ import ProfileScreen from './screens/ProfileScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import SigninScreen from './screens/SigninScreen';
 import OrderListScreen from './screens/ApplyListScreen';
+import UserListScreen from './screens/UserListScreen';
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -105,6 +106,7 @@ function App() {
         <Route path="/profile" element={<PrivateRoute><ProfileScreen /></PrivateRoute>}/>
         <Route path="/joblist" element={<AdminRoute><JobListScreen /></AdminRoute>}/>
         <Route path="/applist" element={<AdminRoute><OrderListScreen /></AdminRoute>}/>
+        <Route path="/userlist" element={<AdminRoute><UserListScreen /></AdminRoute>}/>
       </Routes>
        
       </main>
