@@ -11,7 +11,7 @@ import
 } from './reducers/jobReducers';
 import { cartReducer } from './reducers/cartReducers';
 import { orderCreateReducer, orderListReducer, orderMineListReducer,} from './reducers/orderReducers';
-import { userSigninReducer, userRegisterReducer, userDetailsReducer, userUpdateProfileReducer, userListReducer, userDeleteReducer } from './reducers/userReducers';
+import { userSigninReducer, userRegisterReducer, userDetailsReducer, userUpdateProfileReducer, userListReducer, userDeleteReducer, userUpdateReducer } from './reducers/userReducers';
 
 const initialState = {
   userSignin: {
@@ -34,6 +34,7 @@ const reducer = combineReducers({
     cart: cartReducer,
     userSignin: userSigninReducer,
     userRegister: userRegisterReducer,
+    userUpdate: userUpdateReducer,
     orderCreate: orderCreateReducer,
     orderMineList: orderMineListReducer,
     userDetails: userDetailsReducer,
