@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
@@ -11,7 +11,7 @@ export default function JobScreen(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const jobId = useParams().id;
-  //const [qty] = useState(1);
+  const [qty] = useState(1);
   const jobDetails = useSelector((state) => state.jobDetails);
   const { loading, error, job } = jobDetails;
 
@@ -20,7 +20,8 @@ export default function JobScreen(props) {
   }, [dispatch, jobId]);
   
   const addToCartHandler = () => {
-    navigate(`/`);
+    //navigate(`/`);
+    navigate(`/cart/${jobId}?qty=${qty}`);
   };
   /*const applyHandler = () => {
     //props.history.push('/signin?redirect=shipping');
