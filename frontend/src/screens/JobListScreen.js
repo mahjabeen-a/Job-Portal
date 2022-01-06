@@ -70,7 +70,7 @@ export default function JobListScreen(props) {
             <tr>
               <th>ID</th>
               <th>NAME</th>
-              <th>POSITIOM</th>
+              <th>POSITION</th>
               <th>VACANCY</th>
               <th>SALARY</th>
               <th>DESCRIPTION</th>
