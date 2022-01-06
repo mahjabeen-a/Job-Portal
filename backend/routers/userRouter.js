@@ -6,6 +6,14 @@ import User from '../models/userModel.js';
 import { generateToken, isAuth } from '../utils.js';
 
 const userRouter = express.Router();
+userRouter.get(
+  '/seed',
+  expressAsyncHandler(async (req, res) => {
+    // await User.remove({});
+    const createdUsers = await User.insertMany(data.users);
+    res.send({ createdUsers });
+  })
+);
 
 userRouter.get(
   '/:id',
@@ -18,14 +26,7 @@ userRouter.get(
     }
   })
 );
-userRouter.get(
-  '/seed',
-  expressAsyncHandler(async (req, res) => {
-    // await User.remove({});
-    const createdUsers = await User.insertMany(data.users);
-    res.send({ createdUsers });
-  })
-);
+
 
 userRouter.post(
   '/signin',
