@@ -13,7 +13,7 @@ export default function HomeScreen() {
   const {loading, error, jobs } = jobList;
   //useEffect lets us express different kinds of side effects after a component renders.
   useEffect(() => {
-    dispatch(listjobs());
+    dispatch(listjobs({}));
   }, [dispatch]);
   return (
     <div>

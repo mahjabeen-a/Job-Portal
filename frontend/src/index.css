@@ -37,6 +37,18 @@ footer {
   background-color: #203040;
   color: #ffffff;
 }
+/* Search */
+.search button {
+  border-radius: 0 0.5rem 0.5rem 0;
+  border-right: none;
+  margin-right: 0.5rem;
+}
+.search input {
+  border-radius: 0.5rem 0 0 0.5rem;
+  border-right: none;
+  margin-left: 0.5rem;
+}
+
 /* Checkout Steps */
 .checkout-steps > div {
   border-top: 0.3rem #c0c0c0 solid;

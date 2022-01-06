@@ -36,7 +36,7 @@ export default function JobListScreen(props) {
       dispatch({ type: JOB_DELETE_RESET });
     }
 
-    dispatch(listjobs());
+    dispatch(listjobs({}));
   }, [createdJob, dispatch, navigate, successCreate, successDelete]);
   const deleteHandler = (job) => {
     if (window.confirm('Are you sure to delete?')) {

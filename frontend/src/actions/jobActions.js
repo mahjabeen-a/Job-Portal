@@ -43,12 +43,17 @@ export const createJob = () => async (dispatch, getState) => {
   }
 };
 
-export const listjobs = () => async (dispatch) => {
+  export const listjobs  = ({ name = ''}) => async (
+    dispatch
+  ) => {
   dispatch({
     type:JOB_LIST_REQUEST,
   });
   try {
-    const { data } = await Axios.get('/api/jobs');
+    
+    const { data } = await Axios.get(
+      `/api/jobs?&name=${name}`
+    );
     dispatch({ type:JOB_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type:JOB_LIST_FAIL, payload: error.message });

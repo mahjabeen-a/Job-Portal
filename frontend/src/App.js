@@ -18,6 +18,8 @@ import SigninScreen from './screens/SigninScreen';
 import OrderListScreen from './screens/ApplyListScreen';
 import UserListScreen from './screens/UserListScreen';
 import UserEditScreen from './screens/UserEditScreen';
+import SearchBox from './components/SearchBox';
+import SearchScreen from './screens/SearchScreen';
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -36,6 +38,9 @@ function App() {
           <Link className="brand" to="/">
             Job Portal
           </Link>
+        </div>
+        <div>
+        <SearchBox />
         </div>
         <div>
         <h3><Link to="/">Find the perfect job!</Link></h3>
@@ -109,6 +114,8 @@ function App() {
         <Route path="/applist" element={<AdminRoute><OrderListScreen /></AdminRoute>}/>
         <Route path="/userlist" element={<AdminRoute><UserListScreen /></AdminRoute>}/>
         <Route path="/user/:id/edit" element={<AdminRoute><UserEditScreen /></AdminRoute>}/>
+        <Route path="/search/name" element={<SearchScreen />} exact></Route>
+        <Route path="/search/name/:name" element={<SearchScreen />} exact></Route>
       </Routes>
        
       </main>

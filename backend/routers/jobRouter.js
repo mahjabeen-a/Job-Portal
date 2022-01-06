@@ -9,7 +9,12 @@ const jobRouter = express.Router();
 jobRouter.get(
   '/',
   expressAsyncHandler(async (req, res) => {
-    const jobs = await Job.find({});
+    const name = req.query.name || '';
+    const nameFilter = name ? { name: { $regex: name, $options: 'i' } } : {};
+   // const jobs = await Job.find({});
+    const jobs = await Job.find({
+      ...nameFilter,
+    });
     res.send(jobs);
   })
 );
