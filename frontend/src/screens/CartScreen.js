@@ -28,7 +28,6 @@ export default function CartScreen(props) {
     };
 
     const applyHandler = () => {
-      //props.history.push('/signin?redirect=shipping');
       navigate(`/signin?redirect=/applicationform`);
     };
   
@@ -51,26 +50,16 @@ export default function CartScreen(props) {
                 <div className="row">
                   
                   <div className="min-30">
-                    <Link to={`/job/${item.job}`}>{item.name}</Link>
+                    <Link to={`/jobs/${item.job}`}>{item.name}</Link>
                   </div>
                   <div>
                     {item.position}
                   </div>
                   <div>
-                    <select
-                      value={item.qty}
-                      onChange={(e) =>
+                    <button onClick={() =>
                         dispatch(
-                          addToCart(item.job, Number(e.target.value))
-                        )
-                      }
-                    >
-                      {[...Array(item.vacancy).keys()].map((x) => (
-                        <option key={x + 1} value={x + 1}>
-                          {x + 1}
-                        </option>
-                      ))}
-                    </select>
+                          addToCart(item.job, 1)
+                        )}>1</button>
                   </div>
                   <div>Rs {item.salary}</div>
                   <div>

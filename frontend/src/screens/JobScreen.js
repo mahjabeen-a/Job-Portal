@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
@@ -11,7 +11,7 @@ export default function JobScreen(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const jobId = useParams().id;
-  const [qty, setQty] = useState(1);
+  //const [qty] = useState(1);
   const jobDetails = useSelector((state) => state.jobDetails);
   const { loading, error, job } = jobDetails;
 
@@ -20,8 +20,7 @@ export default function JobScreen(props) {
   }, [dispatch, jobId]);
   
   const addToCartHandler = () => {
-    //props.history.push(`/cart/${jobId}?qty=${qty}`);
-    navigate(`/cart/${jobId}?qty=${qty}`);
+    navigate(`/`);
   };
   /*const applyHandler = () => {
     //props.history.push('/signin?redirect=shipping');
@@ -37,17 +36,15 @@ export default function JobScreen(props) {
    <div>
       <Link to="/">Back to result</Link>
       <div className="row top">
-        <div className="col-2">
+        <div className="col-1">
          
         </div>
         <div className="col-1">
           <ul>
-            <li>
+            
               <h1>{job.name}</h1>
-            </li>
-            <li>salary : Rs {job.salary}</li>
-            <li>
-              Description:
+            <li><b>SALARY :</b> Rs {job.salary}</li>
+            <li> <b>DESCRIPTION :</b>
               <p>{job.description}</p>
             </li>
           </ul>
@@ -55,12 +52,6 @@ export default function JobScreen(props) {
         <div className="col-1">
           <div className="card card-body">
             <ul>
-              <li>
-                <div className="row">
-                  <div>Salary</div>
-                  <div className="price">Rs {job.salary}</div>
-                </div>
-              </li>
               <li>
                 <div className="row">
                   <div>Status</div>
@@ -77,21 +68,8 @@ export default function JobScreen(props) {
                     <>
                       <li>
                         <div className="row">
-                          <div>Qty</div>
-                          <div>
-                            <select
-                              value={qty}
-                              onChange={(e) => setQty(e.target.value)}
-                            >
-                              {[...Array(job.vacancy).keys()].map(
-                                (x) => (
-                                  <option key={x + 1} value={x + 1}>
-                                    {x + 1}
-                                  </option>
-                                )
-                              )}
-                            </select>
-                          </div>
+                          <div>Application</div>
+                            <button>1</button>
                         </div>
                       </li>
                       <li>
@@ -107,10 +85,7 @@ export default function JobScreen(props) {
                           className="primary block"
                         >
                            Apply
-                        </button>*/}
-                       
-                        
-                        
+                        </button>*/}    
                       </li>
                     </>
                   )}
