@@ -21,8 +21,8 @@ export default function ConfirmApplyScreen(props) {
   const placeOrderHandler = () => {
 
     dispatch(createOrder({ ...cart, orderItems: cart.cartItems.find((x) => x.job === jobId) }));
-    console.log('helo');
-    console.log(cart.cartItems.find((x) => x.job === jobId));
+   // console.log('helo');
+   // console.log(cart.cartItems.find((x) => x.job === jobId));
 
   };
   useEffect(() => {
