@@ -27,8 +27,8 @@ export default function CartScreen(props) {
       dispatch(removeFromCart(id));
     };
 
-    const applyHandler = () => {
-      navigate(`/signin?redirect=/applicationform/${jobId}`);
+    const applyHandler = (id) => {
+      navigate(`/signin?redirect=/applicationform/${id}`);
      // navigate(`/signin?redirect=/applicationform`);
     };
   
@@ -73,7 +73,7 @@ export default function CartScreen(props) {
                     </div>
                     <div>
                     <button
-                        onClick={applyHandler}
+                        onClick={() => applyHandler(item.job)}
                         className="primary block"
                     >
                       Apply
