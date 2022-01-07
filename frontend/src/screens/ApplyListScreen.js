@@ -14,7 +14,7 @@ export default function OrderListScreen(props) {
   
   return (
     <div>
-      <h1>Orders</h1>
+      <h1>Applications</h1>
       {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
